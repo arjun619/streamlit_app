@@ -11,3 +11,12 @@ compare it with other supervised algorithms
 With time more and more datasets would added.
 Currently it supports the MUSHROOM DATASET. 
 Look at the datasets folder for downloading.
+
+#Using the app
+
+Clone the repository
+Install the software dependencies.
+Download the csv dataset from the link.
+In load_dataset function change the path to the location where your dataset is downloaded
+
+
