@@ -9,7 +9,9 @@ from sklearn.metrics import accuracy_score,precision_score,recall_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 import app_algorithm
+import plotter
 import load_data
+
 
 st.title('binary classification for mushrooms')
 st.sidebar.title("binary classification for mushrooms")
@@ -39,6 +41,10 @@ if st.sidebar.checkbox("Show Dataset",False):
     st.subheader("SHOWING DATA ")
     st.write(data)
 
-flag=st.sidebar.checkbox("Visualize Data?","visualize Now",key="vis")
+flag=st.sidebar.checkbox("Visualize Data?",key="vis",value=False)
+if flag:
+    column_names=load_data.column_names(data)
+    plotter.bi_variate_graph(data,column_names)
 
-st.checkbox
+
+
