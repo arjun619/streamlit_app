@@ -16,6 +16,7 @@ import load_data
 st.title('binary classification for mushrooms')
 st.sidebar.title("binary classification for mushrooms")
 data=app_algorithm.choose_dataset()
+flag=st.sidebar.checkbox("Visualize Data?",key="vis",value=False)
 #dataset=st.sidebar.selectbox("choose the dataset",("Mushroom Dataset","other"),key='dataset')
 #@st.cache(persist=True)
 
@@ -41,7 +42,7 @@ if st.sidebar.checkbox("Show Dataset",False):
     st.subheader("SHOWING DATA ")
     st.write(data)
 
-flag=st.sidebar.checkbox("Visualize Data?",key="vis",value=False)
+
 if flag:
     column_names=load_data.column_names(data)
     plotter.bi_variate_graph(data,column_names)
