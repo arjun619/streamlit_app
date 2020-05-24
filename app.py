@@ -53,22 +53,7 @@ st.sidebar.subheader('Choose Classifier')
 classifier=st.sidebar.selectbox("Classfier",("SVM","Logistic Regression","Random Forest"))
 
 if classifier=="SVM":
-    c=st.sidebar.number_input("regularization parameter",0.01,10.0,step=0.1,key='c')
-    kernel=st.sidebar.radio("kernel",("rbf","linear"),key="kernel")
-    gamma=st.sidebar.radio("gamma",("auto","scale"),key="gamma")
-
-    metrics=st.sidebar.multiselect("metrics",('ROC Curve','Confusion Matrix','Precision Recall Curve'),key="metrics")
-
-    if st.sidebar.button("CLASSIFY",key="classifer"):
-        st.subheader("SVM RESULTS")
-        model=SVC(kernel=kernel,gamma=gamma,C=c)
-        model.fit(x_train,y_train)
-        accuracy=model.score(x_test,y_test)
-        y_pred=model.predict(x_test)
-        st.write("Accuracy :",accuracy.round(2))
-        st.write("Precision:",precision_score(y_test,y_pred))
-        st.write("Recall Score",recall_score(y_test,y_pred))
-        plot_metrics(metrics)
+    pass
 
 if classifier=="Logistic Regression":
     st.sidebar.subheader("Model Hyperparameters")
