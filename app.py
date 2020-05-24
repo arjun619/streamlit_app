@@ -13,26 +13,32 @@ import load_data
 
 st.title('binary classification for mushrooms')
 st.sidebar.title("binary classification for mushrooms")
-
+data=app_algorithm.choose_dataset()
+#dataset=st.sidebar.selectbox("choose the dataset",("Mushroom Dataset","other"),key='dataset')
 #@st.cache(persist=True)
-data=load_data.load_data()
-x_train,x_test,y_train,y_test=load_data.split(data)
-class_names=['edible','poisonous']
+
+#data=load_data.load_data(dataset)
+#x_train,x_test,y_train,y_test=load_data.split(data)
+#class_names=['edible','poisonous']"""
 
 st.sidebar.subheader('Choose Classifier')
 classifier=st.sidebar.selectbox("Classfier",("SVM","Logistic Regression","Random Forest"))
 
+
 if classifier=="SVM":
-    app_algorithm.svm_display()
+    app_algorithm.svm_display(data)
 
 if classifier=="Logistic Regression":
-    app_algorithm.LogisticRegression_display()
+    app_algorithm.LogisticRegression_display(data)
 
 if classifier=="Random Forest":
-    app_algorithm.random_forest_display()
+    app_algorithm.random_forest_display(data)
 
 
 if st.sidebar.checkbox("Show Dataset",False):   
     st.subheader("SHOWING DATA ")
     st.write(data)
 
+flag=st.sidebar.checkbox("Visualize Data?","visualize Now",key="vis")
+
+st.checkbox

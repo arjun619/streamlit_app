@@ -6,12 +6,15 @@ import streamlit as st
 from sklearn.metrics import precision_score,accuracy_score,recall_score
 import load_data
 from sklearn.metrics import plot_roc_curve,plot_confusion_matrix,plot_precision_recall_curve
-
-data=load_data.load_data()
-x_train,x_test,y_train,y_test=load_data.split(data)
 class_names=['edible','poisonous']
 
-def svm_display():
+def choose_dataset():
+    dataset=st.sidebar.selectbox("choose the dataset",("Mushroom Dataset","other",),key='dataset')
+    data=load_data.load_data(dataset)
+    return data
+
+def svm_display(data):
+    x_train,x_test,y_train,y_test=load_data.split(data)
     c=st.sidebar.number_input("regularization parameter",0.01,10.0,step=0.1,key='c')
     kernel=st.sidebar.radio("kernel",("rbf","linear"),key="kernel")
     gamma=st.sidebar.radio("gamma",("auto","scale"),key="gamma")
@@ -27,9 +30,10 @@ def svm_display():
         st.write("Accuracy :",accuracy.round(2))
         st.write("Precision:",precision_score(y_test,y_pred))
         st.write("Recall Score",recall_score(y_test,y_pred))
-        plot_metrics(model,metrics)
+        plot_metrics(x_test,y_test,model,metrics)
 
-def LogisticRegression_display():
+def LogisticRegression_display(data):
+    x_train,x_test,y_train,y_test=load_data.split(data)
     st.sidebar.subheader("Model Hyperparameters")
     lambdas=st.sidebar.number_input("regularization parameter",0.01,10.0,step=0.1,key='lambda')
     max_iter=st.sidebar.slider("max_iter",1,1000,key="max_iter") 
@@ -46,9 +50,10 @@ def LogisticRegression_display():
         st.write("Accuracy :",accuracy.round(2))
         st.write("Precision:",precision_score(y_test,y_pred))
         st.write("Recall Score",recall_score(y_test,y_pred))
-        plot_metrics(model,metrics)
+        plot_metrics(x_test,y_test,model,metrics)
 
-def random_forest_display():
+def random_forest_display(data):
+    x_train,x_test,y_train,y_test=load_data.split(data)
     st.sidebar.subheader("Model Hyperparameters")
     n_estimators=st.sidebar.number_input("trees in forest",10,500,step=5,key="n_estimators")
     max_depth=st.sidebar.slider("depth",5,20,step=1,key="max_depth")
@@ -64,9 +69,9 @@ def random_forest_display():
         st.write("Accuracy :",accuracy.round(2))
         st.write("Precision:",precision_score(y_test,y_pred))
         st.write("Recall Score",recall_score(y_test,y_pred))
-        plot_metrics(model,metrics)
+        plot_metrics(x_test,y_test,model,metrics)
 
-def plot_metrics(model,metrics_list):
+def plot_metrics(x_test,y_test,model,metrics_list):
     if 'ROC Curve' in metrics_list:
         st.subheader("ROC Curve")
         plot_roc_curve(model,x_test,y_test)
