@@ -17,7 +17,10 @@ def bi_variate_graph(data,column_names):
         fig_bar=px.bar(data,x=feature1,y=feature2)
         st.plotly_chart(fig_bar)
     if scatter_flag:
-        fig_scatter=px.scatter(data,x=feature1,y=feature2)
+        st.sidebar.markdown("# Advanced Visualization tools")
+        bubble=st.sidebar.number_input("bubble_size",2,100,key="bubble")
+        bubble_value=st.sidebar.selectbox("select one feature",(feature1,feature2),key="bubble_value")
+        fig_scatter=px.scatter(data,x=feature1,y=feature2,size_max=bubble,size=bubble_value)
         st.plotly_chart(fig_scatter)
 
     
