@@ -15,7 +15,7 @@ import load_data
 
 st.title('binary classification for mushrooms')
 st.sidebar.title("binary classification for mushrooms")
-data=app_algorithm.choose_dataset()
+data,dataset=app_algorithm.choose_dataset()
 flag=st.sidebar.checkbox("Visualize Data?",key="vis",value=False)
 #dataset=st.sidebar.selectbox("choose the dataset",("Mushroom Dataset","other"),key='dataset')
 #@st.cache(persist=True)
@@ -29,13 +29,13 @@ classifier=st.sidebar.selectbox("Classfier",("SVM","Logistic Regression","Random
 
 
 if classifier=="SVM":
-    app_algorithm.svm_display(data)
+    app_algorithm.svm_display(data,dataset)
 
 if classifier=="Logistic Regression":
-    app_algorithm.LogisticRegression_display(data)
+    app_algorithm.LogisticRegression_display(data,dataset)
 
 if classifier=="Random Forest":
-    app_algorithm.random_forest_display(data)
+    app_algorithm.random_forest_display(data,dataset)
 
 
 if st.sidebar.checkbox("Show Dataset",False):   
