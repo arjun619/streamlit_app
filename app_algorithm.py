@@ -88,7 +88,7 @@ def plot_metrics(x_test,y_test,model,metrics_list,dataset):
 
     if dataset=='Iris':
         if 'ROC Curve' in metrics_list:
-            st.markdown("# ROC curve not available for multi class classification")
+            pass
         if 'Confusion Matrix' in metrics_list:
             st.subheader("Confusion Matrix")
             plot_confusion_matrix(model,x_test,y_test)
