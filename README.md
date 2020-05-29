@@ -9,7 +9,9 @@ It allows developers to get better intuition about the power of changing the hyp
 compare it with other supervised algorithms
 
 With time more and more datasets would added.
-Currently it supports the MUSHROOM DATASET. 
+Currently it supports the MUSHROOM DATASET.
+Update 1:
+Iris dataset added
 Look at the datasets folder for downloading.
 
 #Using the app
